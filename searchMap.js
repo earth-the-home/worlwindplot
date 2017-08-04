@@ -1,13 +1,21 @@
 $(document).ready(function(){
 
-	$('#search').on('click', function () {
+	try{
+		$('#search').on('click', function () {
 		$.ajax({
         type: "GET",
         url: "http://localhost:1337/Pollachi-1.csv",
         dataType: "text",
-        success: function(data) {plotCoconutWind(data);}
+        success: function(data) {plotCoconutWind(data);},
+		error: function (request, status, error) {
+			alert('Something went wrong. Please try again.');
+		}
 		});
 	});
+	}catch(e){
+		alert('Something went wrong. Please try again.');
+	}
+	
 
 });
 
@@ -108,7 +116,7 @@ function plotCoconutWind(allText){
     var headers = allTextLines[0].split(',');
     for (var k=1; k<allTextLines.length; k++) {
         var data = allTextLines[k].split(',');
-        if (data.length === headers.length) {
+        if (data.length === 3) {
 		
 		
 		// For each placemark image, create a placemark with a label.
@@ -136,6 +144,7 @@ function plotCoconutWind(allText){
             highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
             highlightAttributes.imageScale = 0.8;
             placemark.highlightAttributes = highlightAttributes;
+			
 
             // Add the placemark to the layer.
             placemarkLayer.addRenderable(placemark);

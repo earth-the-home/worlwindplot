@@ -11,6 +11,34 @@ $(document).ready(function(){
 
 });
 
+function createZone(){
+		// Tell World Wind to log only warnings.
+        WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
+
+        // Create the World Window.
+        var ww = new WorldWind.WorldWindow("eFormerMap");
+
+	   
+		var layers = [
+            {layer: new WorldWind.BMNGLayer(), enabled: true},
+            {layer: new WorldWind.BMNGLandsatLayer(), enabled: false},
+            {layer: new WorldWind.BingAerialWithLabelsLayer(null), enabled: true},
+            {layer: new WorldWind.CompassLayer(), enabled: true},
+            {layer: new WorldWind.CoordinatesDisplayLayer(ww), enabled: true},
+            {layer: new WorldWind.ViewControlsLayer(ww), enabled: true}
+        ];
+
+        for (var l = 0; l < layers.length; l++) {
+            layers[l].layer.enabled = layers[l].enabled;
+            ww.addLayer(layers[l].layer);
+        }
+       
+
+
+		
+    
+}
+
 
 
 function plotCoconutWind(allText){
@@ -35,6 +63,10 @@ function plotCoconutWind(allText){
             ww.addLayer(layers[l].layer);
         }
        
+		if(!allText){
+			console.log('No csv data found to create map. please verify csv file');
+			return;
+		}
 
         // Define the images we'll use for the placemarks.
         var placers = {
@@ -45,29 +77,31 @@ function plotCoconutWind(allText){
 		
 		
 		var placemark,
-            placemarkAttributes = new WorldWind.PlacemarkAttributes(null),
+            placemarkAttributes,
             highlightAttributes,
             placemarkLayer = new WorldWind.RenderableLayer("Placemarks"),
-			goToAnimator = new WorldWind.GoToAnimator(ww),
 			label = "",
-            latitude = 9.7344,
-            longitude = 77.2807;//for cumbum
+            latitude = 10.5992701,
+            longitude = 76.9701552;//for cumbum
+		
+			ww.navigator.range = 5000; // 2 million meters above the ellipsoid
+			new WorldWind.GoToAnimator(ww).goTo(new WorldWind.Location(latitude, longitude));
 			
-			goToAnimator.goTo(new WorldWind.Location(latitude, longitude));
-			
+		
+
 			
 		  // Set up the common placemark attributes.
-        placemarkAttributes.imageScale = 20;
-        placemarkAttributes.imageOffset = new WorldWind.Offset(
+        //placemarkAttributes.imageScale = 0.5;
+       /*  placemarkAttributes.imageOffset = new WorldWind.Offset(
             WorldWind.OFFSET_FRACTION, 0.3,
             WorldWind.OFFSET_FRACTION, 0.0);
         placemarkAttributes.imageColor = WorldWind.Color.WHITE;
         placemarkAttributes.labelAttributes.offset = new WorldWind.Offset(
             WorldWind.OFFSET_FRACTION, 0.5,
             WorldWind.OFFSET_FRACTION, 1.0);
-        placemarkAttributes.labelAttributes.color = WorldWind.Color.YELLOW;
-        placemarkAttributes.drawLeaderLine = true;
-        placemarkAttributes.leaderLineAttributes.outlineColor = WorldWind.Color.RED;
+        placemarkAttributes.labelAttributes.color = WorldWind.Color.YELLOW; */
+        //placemarkAttributes.drawLeaderLine = false;
+        //placemarkAttributes.leaderLineAttributes.outlineColor = WorldWind.Color.RED;
 
 		
 	var allTextLines = allText.split(/\r\n|\n/);
@@ -84,16 +118,15 @@ function plotCoconutWind(allText){
 			label = data[2];
 			
 			  // Create the placemark and its label.
-            placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 1e2), true, null);
-			 ww.redraw(); 
-            placemark.label = label + "\n"
-            + "Lat " + placemark.position.latitude.toString() + "\n"
-            + "Lon " + placemark.position.longitude.toString();
-            placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+            placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 10), true, null);
+            placemark.label = label;
+			placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
             // Create the placemark attributes for this placemark. Note that the attributes differ only by their
             // image URL.
-            placemarkAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+            placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
+			placemarkAttributes.imageScale = 0.5;
+			placemarkAttributes.drawLeaderLine = false;
             placemarkAttributes.imageSource = placers[label];
             placemark.attributes = placemarkAttributes;
 
@@ -101,7 +134,7 @@ function plotCoconutWind(allText){
             // the default highlight attributes so that all properties are identical except the image scale. You could
             // instead vary the color, image, or other property to control the highlight representation.
             highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
-            highlightAttributes.imageScale = 1.2;
+            highlightAttributes.imageScale = 0.8;
             placemark.highlightAttributes = highlightAttributes;
 
             // Add the placemark to the layer.
@@ -113,7 +146,7 @@ function plotCoconutWind(allText){
 		
         // Add the placemarks layer to the World Window's layer list.
         ww.addLayer(placemarkLayer);
-
+		var highlightController = new WorldWind.HighlightController(ww);
 		
     
 }

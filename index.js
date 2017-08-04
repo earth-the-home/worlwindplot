@@ -1,10 +1,6 @@
 'use strict'
-
 var express = require('express')
-var log = require('log4js')
 var app = new express()
-var path = require('path')
-var logger = log.getLogger(app)
 app.get('/index.html',function(req,res){
 	console.log(req.url);
 	res.sendFile('index.html', {root: __dirname })
@@ -21,5 +17,5 @@ console.log(req.url);
 })
 
 app.listen(1337,function(){
-logger.info('Server is Running on 1337')
+console.log('Server is Running on 1337')
 })

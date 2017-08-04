@@ -1,0 +1,15 @@
+{
+  "name": "sampleworldwindplot",
+  "version": "1.0.0",
+  "description": "A sample world wind plotting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sample",
+    "worldwindplot"
+  ],
+  "author": "Naveen kumar <naveenkumarec405@gmail.com>",
+  "license": "MIT"
+}

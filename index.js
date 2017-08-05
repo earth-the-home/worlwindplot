@@ -16,9 +16,9 @@ console.log(req.url);
 	res.sendFile('Pollachi-1.csv', {root: __dirname })
 })
 
-app.get('/naveen.jpg',function(req,res){
+app.get('/*.jpg',function(req,res){
 console.log(req.url);
-	res.sendFile('naveen.jpg', {root: __dirname })
+	res.sendFile(req.url, {root: __dirname })
 })
 
 app.listen(1337,function(){

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Folder>
+	<name>project</name>
+	<open>1</open>
+	<Document id="ndvi_Clip" xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+		<name>project1-JAN017</name>
+		<open>1</open>
+		<Snippet maxLines="0"></Snippet>
+		<GroundOverlay id="ID_0">
+			<name>ndvi_Clip</name>
+			<Snippet maxLines="0"></Snippet>
+			<drawOrder>1000</drawOrder>
+			<Icon>
+				<href>Layer0.png</href>
+			</Icon>
+			<LatLonBox>
+				<north>9.738408141856443</north>
+				<south>9.703802222994737</south>
+				<east>77.26402267451333</east>
+				<west>77.22102900142765</west>
+			</LatLonBox>
+		</GroundOverlay>
+		<Document id="ndvi_Clip1" xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+			<name>project2-FEB2017</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<GroundOverlay id="ID_0">
+				<name>ndvi_Clip1</name>
+				<Snippet maxLines="0"></Snippet>
+				<drawOrder>1000</drawOrder>
+				<Icon>
+					<href>Layer0_01.png</href>
+				</Icon>
+				<LatLonBox>
+					<north>9.703146473210854</north>
+					<south>9.681566272369135</south>
+					<east>77.30784222682432</east>
+					<west>77.28195557726997</west>
+				</LatLonBox>
+			</GroundOverlay>
+		</Document>
+		<GroundOverlay id="ID_0">
+			<name>Proect2-JAN2017</name>
+			<Snippet maxLines="0"></Snippet>
+			<drawOrder>1000</drawOrder>
+			<Icon>
+				<href>Layer0_02.png</href>
+			</Icon>
+			<LatLonBox>
+				<north>9.703146473210854</north>
+				<south>9.681566272369135</south>
+				<east>77.30784222682432</east>
+				<west>77.28195557726997</west>
+			</LatLonBox>
+		</GroundOverlay>
+	</Document>
+</Folder>
+</kml>

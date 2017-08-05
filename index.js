@@ -11,12 +11,18 @@ console.log(req.url);
 	res.sendFile('searchMap.js', {root: __dirname })
 })
 
-app.get('/Pollachi-1.csv',function(req,res){
+app.get('/*.csv',function(req,res){
 console.log(req.url);
-	res.sendFile('Pollachi-1.csv', {root: __dirname })
+	res.sendFile(req.url, {root: __dirname })
 })
 
 app.get('/*.jpg',function(req,res){
+console.log(req.url);
+	res.sendFile(req.url, {root: __dirname })
+})
+
+
+app.get('/*.kml',function(req,res){
 console.log(req.url);
 	res.sendFile(req.url, {root: __dirname })
 })

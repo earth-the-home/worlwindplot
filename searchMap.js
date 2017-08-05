@@ -4,7 +4,7 @@ $(document).ready(function(){
 		$('#search').on('click', function () {
 		$.ajax({
         type: "GET",
-        url: "http://localhost:1337/Pollachi-1.csv",
+        url: "http://localhost:1337/Cumbum.csv",
         dataType: "text",
         success: function(data) {plotCoconutWind(data);},
 		error: function (request, status, error) {
@@ -218,10 +218,10 @@ function plotCoconutWind(allText){
 
         // Add the screen images to a layer and the layer to the World Window's layer list.
         ww.addLayer(screenImageLayer);
-       
 		
-    
 }
+
+
 
 
    

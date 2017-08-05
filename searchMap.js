@@ -132,7 +132,7 @@ function plotCoconutWind(allText){
 			
 			  // Create the placemark and its label.
             placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 0), true, null);
-            placemark.label = label;
+           // placemark.label = label;
 			placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
             // Create the placemark attributes for this placemark. Note that the attributes differ only by their

@@ -89,11 +89,11 @@ function plotCoconutWind(allText){
             highlightAttributes,
             placemarkLayer = new WorldWind.RenderableLayer("Placemarks"),
 			label = "",
-            latitude = 10.5992701,
-            longitude = 76.9701552;//for cumbum
+            latitude = 0,
+            longitude = 0;//for cumbum
 		
-			ww.navigator.range = 5000; // 2 million meters above the ellipsoid
-			new WorldWind.GoToAnimator(ww).goTo(new WorldWind.Location(latitude, longitude));
+			 // 2 million meters above the ellipsoid
+			
 			
 		
 
@@ -117,16 +117,21 @@ function plotCoconutWind(allText){
     for (var k=1; k<allTextLines.length; k++) {
         var data = allTextLines[k].split(',');
         if (data.length === 3) {
-		
-		
-		// For each placemark image, create a placemark with a label.
-        for (var i = 0, len = headers.length; i < len; i++) {
 			latitude = data[0];
 			longitude = data[1];
 			label = data[2];
 			
+			if(k == 1){
+				ww.navigator.range = 5000;
+				new WorldWind.GoToAnimator(ww).goTo(new WorldWind.Location(latitude, longitude));
+			}
+		
+		// For each placemark image, create a placemark with a label.
+        //for (var i = 0, len = headers.length; i < len; i++) {
+			
+			
 			  // Create the placemark and its label.
-            placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 10), true, null);
+            placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 0), true, null);
             placemark.label = label;
 			placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
@@ -143,12 +148,13 @@ function plotCoconutWind(allText){
             // instead vary the color, image, or other property to control the highlight representation.
             highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
             highlightAttributes.imageScale = 0.8;
+			highlightAttributes.imageSource = "http://localhost:1337/naveen.jpg"
             placemark.highlightAttributes = highlightAttributes;
 			
 
             // Add the placemark to the layer.
             placemarkLayer.addRenderable(placemark);
-		}
+		//}
 		
         }
     }

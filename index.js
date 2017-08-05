@@ -16,6 +16,11 @@ console.log(req.url);
 	res.sendFile('Pollachi-1.csv', {root: __dirname })
 })
 
+app.get('/naveen.jpg',function(req,res){
+console.log(req.url);
+	res.sendFile('naveen.jpg', {root: __dirname })
+})
+
 app.listen(1337,function(){
 console.log('Server is Running on 1337')
 })
